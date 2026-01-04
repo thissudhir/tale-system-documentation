@@ -291,4 +291,4 @@ Two scenarios with required behavior: maintain robust tracking/audit while ensur
 *   **agent cancels claiming offline/technical issues:** require evidence where practical (e.g., socket logs showing disconnect, device telemetry). If agent later uploads buffered data showing they were active, flag inconsistency.
 *   **Forced cancellation by system due to safety** (e.g., device reports crash, severe GPS anomaly, or fraudulent behavior): produce rich audit bundle for safety team, preserve full recent traces, and prevent auto-reassignment to the same agent until cleared.
 
-<img width="889" height="1014" alt="Image" src="https://github.com/user-attachments/assets/3055d6d8-fbbe-44b2-ad01-675dc90fd84d" />
+<img width="889" height="1014" alt="Image" src="https://github.com/user-attachments/assets/0d478932-38ef-4634-a3c9-7de8f93a531f" />
