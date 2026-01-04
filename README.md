@@ -98,8 +98,8 @@
 *   **Optimistic locking:** Use `rideVersion` or a dedicated transaction mechanism in Orchestrator to avoid races (e.g., two drivers accept). The orchestrator must reject stale transitions with clear error codes; clients should handle retries and inform users.
 *   **Idempotency:** All external events must carry `requestId` for dedup; Orchestrator must ignore duplicates.
 *   **Validation:** Each transition validated by actor permissions (e.g., only assigned agent can mark arrived or start).
-
-![Part-1 Image](https://github.com/user-attachments/assets/e6ca1b17-87b7-43c0-a70e-38bb4764893f)
+  
+<img width="852" height="684" alt="Flow DiagramChart - visual selection" src="https://github.com/user-attachments/assets/154557aa-6156-46ab-b198-6287a56bb7b4" />
 
 ---
 
@@ -180,7 +180,7 @@
     *   For active trips, if agent network down but device has cached updates that are later uploaded, server reconciles by sequence numbers and client timestamps. Server marks gaps and flags possible GPS tampering if inconsistent.
 *   **Server-side extrapolation:** Optionally extrapolate a probable position using last velocity/heading for short gaps (with low confidence). Do not use extrapolated position for critical actions (e.g., billing settlement, master state change) without confirmation.
 
-![Part-2 image](https://github.com/user-attachments/assets/d4891346-930d-4937-be0c-e1106f08e2a3)
+<img width="1080" height="708" alt="Flow DiagramChart - visual selection-2" src="https://github.com/user-attachments/assets/3d375a2a-25c7-4baa-a45d-fb5e92707984" />
 
 ---
 
@@ -231,8 +231,7 @@
 *   **Versioning:** `rideVersion` increments at every accepted transition and each authoritative change. If client tries a stale update, server rejects with version error and instructs client to refresh.
 *   **Alerts & manual intervention:** Admin dashboards show flagged rides (disconnects > threshold, suspicious GPS, or long idle) for human follow-up.
 
-![Part-3 image](https://github.com/user-attachments/assets/110cd6f4-968f-4e6d-bf9e-f6011b4c8ca7)
-
+<img width="756" height="984" alt="Flow DiagramChart - visual selection-3" src="https://github.com/user-attachments/assets/2f61dd98-482d-4471-a9a2-97b5590119cd" />
 
 ---
 
