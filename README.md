@@ -1,8 +1,8 @@
-# Flow Diagram
+# #Flow Diagram
 
 ![Image](https://github.com/user-attachments/assets/8d36cfb6-bb70-43fb-80d7-0e0be6deba0b)
 
-# Assumptions (explicit)
+# Requirments
 
 **Regional ride-hailing context:** unreliable mobile networks, intermittent GPS, variable device capabilities, and occasional server-to-device latency.
 
@@ -21,6 +21,7 @@
 ## Part 1 — Ride Lifecycle & State Machine
 
 ### Canonical states
+
 *   Requested
 *   Searching for agent
 *   Agent Assigned
@@ -281,14 +282,3 @@ Two scenarios with required behavior: maintain robust tracking/audit while ensur
 *   **agent cancels claiming offline/technical issues:** require evidence where practical (e.g., socket logs showing disconnect, device telemetry). If agent later uploads buffered data showing they were active, flag inconsistency.
 *   **Forced cancellation by system due to safety** (e.g., device reports crash, severe GPS anomaly, or fraudulent behavior): produce rich audit bundle for safety team, preserve full recent traces, and prevent auto-reassignment to the same agent until cleared.
 
----
-
-## Summary — Operational rules & best-practice checklist
-
-*   **Authoritative state:** Orchestrator service enforces transitions with optimistic locking and idempotency.
-*   **Location streams:** prioritized channels (socket -> HTTP -> push), seqNumbers, client timestamps, and server-side validation/filtering.
-*   **Buffer-and-forward:** client buffers updates during disconnects; server reconciles by `seqNumber` and timestamps, preserving ordering.
-*   **Failure windows:** configurable timers for reconnection and reassignment to balance user experience and safety.
-*   **Anomaly handling:** detect freezes/jumps and either smooth, reject, or extrapolate with confidence flags; flag ambiguous trips for manual review.
-*   **Cancellation policy:** clearly record actor, reason, time, evidence (arrival proof), and recent location trace; stop forwarding tracking to rider post-cancellation while retaining traces for audit.
-*   **Admin visibility:** show state, timestamps, last-known locations, and recent trace snippet plus a link to full audit for flagged rides.
