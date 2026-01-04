@@ -100,6 +100,7 @@
 *   **Validation:** Each transition validated by actor permissions (e.g., only assigned agent can mark arrived or start).
 
 <img width="744" height="888" alt="Image" src="https://github.com/user-attachments/assets/72ea824c-9db8-4bd5-8b86-840fc3b739d3" />
+
 ---
 
 ## Part 2 — Real-Time Location Tracking Logic
@@ -180,6 +181,7 @@
 *   **Server-side extrapolation:** Optionally extrapolate a probable position using last velocity/heading for short gaps (with low confidence). Do not use extrapolated position for critical actions (e.g., billing settlement, master state change) without confirmation.
 
 <img width="666" height="696" alt="Image" src="https://github.com/user-attachments/assets/e5e95012-5a1e-479d-a6cb-5acbf752663a" />
+
 ---
 
 ## Part 3 — Failure & Edge-Case Handling
@@ -230,6 +232,7 @@
 *   **Alerts & manual intervention:** Admin dashboards show flagged rides (disconnects > threshold, suspicious GPS, or long idle) for human follow-up.
 
 <img width="948" height="648" alt="Image" src="https://github.com/user-attachments/assets/04e16ca6-35c6-45c3-86c3-66b47da4cef3" />
+
 ---
 
 ## Part 4 — Cancellation + Tracking Interaction
