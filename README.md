@@ -1,6 +1,10 @@
-# #Flow Diagram
-
+*Flow Diagram*
 ![Image](https://github.com/user-attachments/assets/8d36cfb6-bb70-43fb-80d7-0e0be6deba0b)
+*Chart*
+<img width="2088" height="906" alt="flow-diagram" src="https://github.com/user-attachments/assets/bdc2a70f-b38e-4d99-8bf3-91eb9a82a4a5" />
+
+*Mock Database Schema*
+<img width="1814" height="1330" alt="Image" src="https://github.com/user-attachments/assets/1d614ae9-3044-481a-b4bf-c85f2bc5896c" />
 
 # Requirments
 
@@ -95,6 +99,7 @@
 *   **Idempotency:** All external events must carry `requestId` for dedup; Orchestrator must ignore duplicates.
 *   **Validation:** Each transition validated by actor permissions (e.g., only assigned agent can mark arrived or start).
 
+<img width="744" height="888" alt="Image" src="https://github.com/user-attachments/assets/72ea824c-9db8-4bd5-8b86-840fc3b739d3" />
 ---
 
 ## Part 2 — Real-Time Location Tracking Logic
@@ -174,6 +179,7 @@
     *   For active trips, if agent network down but device has cached updates that are later uploaded, server reconciles by sequence numbers and client timestamps. Server marks gaps and flags possible GPS tampering if inconsistent.
 *   **Server-side extrapolation:** Optionally extrapolate a probable position using last velocity/heading for short gaps (with low confidence). Do not use extrapolated position for critical actions (e.g., billing settlement, master state change) without confirmation.
 
+<img width="666" height="696" alt="Image" src="https://github.com/user-attachments/assets/e5e95012-5a1e-479d-a6cb-5acbf752663a" />
 ---
 
 ## Part 3 — Failure & Edge-Case Handling
@@ -223,6 +229,7 @@
 *   **Versioning:** `rideVersion` increments at every accepted transition and each authoritative change. If client tries a stale update, server rejects with version error and instructs client to refresh.
 *   **Alerts & manual intervention:** Admin dashboards show flagged rides (disconnects > threshold, suspicious GPS, or long idle) for human follow-up.
 
+<img width="948" height="648" alt="Image" src="https://github.com/user-attachments/assets/04e16ca6-35c6-45c3-86c3-66b47da4cef3" />
 ---
 
 ## Part 4 — Cancellation + Tracking Interaction
@@ -251,6 +258,8 @@ Two scenarios with required behavior: maintain robust tracking/audit while ensur
 **How the ride appears in admin view:**
 *   Admin sees ride as **Cancelled (Customer)** with metadata: assigned agent, times (request, assign, cancel), last-known locations with timestamps, and a small map showing the final known agent position and recent path segment.
 *   Admin can view raw audit trail and set filters (e.g., cancellations while en route). If flagged, ride appears in a "review needed" queue.
+
+<img width="752" height="2028" alt="Image" src="https://github.com/user-attachments/assets/e81c20b3-988d-4967-8742-bd9c9c2ba12e" />
 
 ### Scenario B: agent cancels during pickup (agent cancels after being assigned or after toggling Arrived)
 
@@ -282,3 +291,4 @@ Two scenarios with required behavior: maintain robust tracking/audit while ensur
 *   **agent cancels claiming offline/technical issues:** require evidence where practical (e.g., socket logs showing disconnect, device telemetry). If agent later uploads buffered data showing they were active, flag inconsistency.
 *   **Forced cancellation by system due to safety** (e.g., device reports crash, severe GPS anomaly, or fraudulent behavior): produce rich audit bundle for safety team, preserve full recent traces, and prevent auto-reassignment to the same agent until cleared.
 
+<img width="889" height="1014" alt="Image" src="https://github.com/user-attachments/assets/3055d6d8-fbbe-44b2-ad01-675dc90fd84d" />
