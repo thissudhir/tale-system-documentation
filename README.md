@@ -1,4 +1,4 @@
-![Flow Diagram](https://github.com/user-attachments/assets/9cb9014a-e21c-41c5-b8ff-f5307fe11bf1)
+(![Image](https://github.com/user-attachments/assets/8d36cfb6-bb70-43fb-80d7-0e0be6deba0b))
 
 # Assumptions (explicit)
 
